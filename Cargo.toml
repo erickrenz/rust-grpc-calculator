@@ -1,0 +1,25 @@
+[package]
+name = "rust-grpc-calculator"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+tonic = "0.11"
+tonic-reflection = "0.11"
+tonic-web = "0.11"
+tower-http = { version = "0.4", features = ["cors"] }
+prost = "0.12"
+
+[build-dependencies]
+tonic-build = "0.11"
+
+[[bin]]
+name = "server"
+path = "src/main.rs"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"
