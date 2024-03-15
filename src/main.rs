@@ -61,6 +61,36 @@ impl Calculator for CalculatorService {
         Ok(tonic::Response::new(response))
     }
 
+    async fn subtract(
+        &self,
+        request: tonic::Request<proto::CalculationRequest>,
+    ) -> Result<tonic::Response<proto::CalculationResponse>, tonic::Status> {
+        println!("Got a request: {:?}", request);
+        self.increment_counter().await;
+
+        let input = request.get_ref();
+        let response = proto::CalculationResponse {
+            result: input.a - input.b,
+        };
+
+        Ok(tonic::Response::new(response))
+    }
+
+    async fn multiply(
+        &self,
+        request: tonic::Request<proto::CalculationRequest>,
+    ) -> Result<tonic::Response<proto::CalculationResponse>, tonic::Status> {
+        println!("Got a request: {:?}", request);
+        self.increment_counter().await;
+
+        let input = request.get_ref();
+        let response = proto::CalculationResponse {
+            result: input.a * input.b,
+        };
+
+        Ok(tonic::Response::new(response))
+    }
+
     async fn divide(
         &self,
         request: tonic::Request<proto::CalculationRequest>,
